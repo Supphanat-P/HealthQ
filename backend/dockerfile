@@ -1,0 +1,16 @@
+FROM node:20-alpine
+
+WORKDIR /app
+
+# Install all deps (including dev) so nodemon is available for dev runs
+COPY package*.json ./
+RUN npm install
+
+# Copy source
+COPY . .
+
+EXPOSE 4000
+
+# Default to dev start so nodemon restarts on file changes when mounted as a volume
+# In production you can build a separate image or override CMD to `npm run start`
+CMD ["npm", "run", "dev"]

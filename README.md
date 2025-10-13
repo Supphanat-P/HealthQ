@@ -1,12 +1,48 @@
-# React + Vite
+# HealthQ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Development & Docker
 
-Currently, two official plugins are available:
+Prereqs:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Docker & Docker Compose
+- Node 18+ (for local dev)
 
-## Expanding the ESLint configuration
+Run with Docker Compose (builds frontend, backend, and MySQL):
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```powershell
+cd /d "d:\Documents\VSCODE\react\HealthQ\HQ\HealthQ"
+docker compose up --build
+```
+
+This will expose:
+
+- Backend API: http://localhost:4000
+- Frontend dev server (if using Vite inside container): http://localhost:5173
+- phpMyAdmin: http://localhost:8080 (optional)
+
+Local development (without Docker):
+
+- Install deps:
+
+```powershell
+npm install
+cd frontend
+npm install
+```
+
+- Start backend with nodemon:
+
+```powershell
+npm run backend:dev
+```
+
+- Start frontend dev server:
+
+```powershell
+npm run dev
+```
+
+Notes:
+
+- The backend will attempt to connect to MySQL if DB environment variables are set; otherwise it falls back to in-memory sample data.
+- I added a Vite dev proxy so frontend requests to `/doctors` are forwarded to the backend during dev.

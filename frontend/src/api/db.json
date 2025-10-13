@@ -1,0 +1,7 @@
+{
+  "doctors": [
+    { "id": 1, "name": "Dr. Smith", "specialty": "Cardiology" },
+    { "id": 2, "name": "Dr. Jones", "specialty": "Dermatology" }
+  ],
+  "appointments": []
+}
